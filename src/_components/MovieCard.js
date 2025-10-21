@@ -1,16 +1,23 @@
 import { StarIconSmall } from "@/_icons/StarIconSmall";
 
-export default function MovieCard() {
+export default function MovieCard({ rating, title, imageUrl }) {
+  // const imageUrl = `https://image.tmdb.org/t/p/${imageUrl}`;
+  // imageUrl={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+
   return (
-    <div className="grid-cols-5">
-      <div className="w-[230px] h-[340px] bg-[url('/cardPic.jpg')] bg-cover bg-center"></div>
-      <div className="w-[230px] h-[95px] bg-[#F4F4F5] bg-cover bg-center">
-        <div className="flex ">
-          <StarIconSmall className="" />
-          <div className="text-black text-sm">6.9</div>
-          <div className="text-xs text-[#71717A]">/10</div>
+    <div>
+      <div className="w-[230px] h-[435px] bg-neutral-200 rounded-sm">
+        <div
+          className="w-[230px] h-[340px] bg-cover bg-center rounded-t-lg"
+          style={{ backgroundImage: `url(${imageUrl})` }}
+        ></div>
+        <div className="flex items-center">
+          <StarIconSmall />
+          <p className="text-black text-sm font-medium"></p>
+          {rating}
+          <p className="text-xs text-[#71717A]">/10</p>
         </div>
-        <p>Dear Santa</p>
+        <div className=" flex text-lg">{title}</div>
       </div>
     </div>
   );

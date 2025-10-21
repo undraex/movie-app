@@ -1,28 +1,62 @@
+"use client";
+
 import MovieCard from "@/_components/MovieCard";
 import { ArrowRight } from "@/_icons/ArrowRight";
-import { StarIconSmall } from "@/_icons/StarIconSmall";
+import { useState, useEffect } from "react";
+
+const BASE_URL = "https://api.themoviedb.org/3";
+
+const ACCESS_TOKEN =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjI5ZmNiMGRmZTNkMzc2MWFmOWM0YjFjYmEyZTg1NiIsIm5iZiI6MTc1OTcxMTIyNy43OTAwMDAyLCJzdWIiOiI2OGUzMGZmYjFlN2Y3MjAxYjI5Y2FiYmIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.M0DQ3rCdsWnMw8U-8g5yGXx-Ga00Jp3p11eRyiSxCuY";
 
 export default function UpcomingMovieList() {
+  const [upcomingMoviesData, setUpcomingMoviesData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const getUpcomingMovieListData = async () => {
+    setLoading(true);
+    const upcomingMovieEndpoint = `${BASE_URL}/movie/upcoming?language=en-US&page=1`;
+    const response = await fetch(upcomingMovieEndpoint, {
+      headers: {
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    setUpcomingMoviesData(data.results);
+    setLoading(false);
+  };
+  useEffect(() => {
+    getUpcomingMovieListData();
+    // getData();
+  }, []);
+
   return (
-    <div>
-      <div className="flex justify-between">
-        <div className=" text-2xl font-semibold justify-between">Upcoming</div>
-        <button className="h-[36px] w-[120px] flex items-center justify-center gap-[8px]">
-          See more
-          <ArrowRight />
-        </button>
-      </div>
-      <div className="grid-cols-5 flex spacing/8">
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+    <div className="justify-around min-w-[1440px] items-center flex ">
+      <div className="">
+        <div className="flex justify-between ">
+          <div className=" text-2xl font-semibold justify-between">
+            Upcoming
+          </div>
+          <button className="h-[36px] w-[120px] flex items-center justify-center gap-[8px]">
+            See more
+            <ArrowRight />
+          </button>
+        </div>
+        <div className="grid grid-cols-5 gap-[32px]">
+          {upcomingMoviesData.slice(0, 10).map((movie, index) => {
+            return (
+              <MovieCard
+                key={index}
+                title={movie.title}
+                // imageUrl={movie.backdrop_path}
+                imageUrl={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                rating={movie.vote_average}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
