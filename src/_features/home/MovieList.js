@@ -16,7 +16,7 @@ export default function MovieList({ type }) {
 
   const getMovieListData = async () => {
     setLoading(true);
-    const movieListEndpoint = `${BASE_URL}/movie/${type}?language=en-US&page=1`;
+    const movieListEndpoint = `${BASE_URL}/movie/${param.type}?language=en-US&page=1`;
     const response = await fetch(movieListEndpoint, {
       headers: {
         Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -34,7 +34,7 @@ export default function MovieList({ type }) {
   }, []);
 
 const handleSeeMoreButton = () =>{
-  router.push("/upcoming")
+  router.push("/movies/${type}")
 }
 
   return (
