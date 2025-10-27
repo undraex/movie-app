@@ -33,6 +33,10 @@ export default function MovieList({ type }) {
     // getData();
   }, []);
 
+const handleSeeMoreButton = () =>{
+  router.push("/upcoming")
+}
+
   return (
     <div className="flex justify-around min-w-[1440px] items-center">
       <div className="">
