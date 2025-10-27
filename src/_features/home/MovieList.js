@@ -3,15 +3,14 @@
 import MovieCard from "@/_components/MovieCard";
 import { ArrowRight } from "@/_icons/ArrowRight";
 import { useState, useEffect } from "react";
-import Router from "next/navigation";
+import { useRouter } from "next/navigation";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const ACCESS_TOKEN =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjI5ZmNiMGRmZTNkMzc2MWFmOWM0YjFjYmEyZTg1NiIsIm5iZiI6MTc1OTcxMTIyNy43OTAwMDAyLCJzdWIiOiI2OGUzMGZmYjFlN2Y3MjAxYjI5Y2FiYmIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.M0DQ3rCdsWnMw8U-8g5yGXx-Ga00Jp3p11eRyiSxCuY";
 
-export default function MovieList({type}) => {
- 
-  // const router= useRouter();
+export default function MovieList({ type }) {
+  const router = useRouter();
   const [movieListData, setMovieListData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -33,7 +32,7 @@ export default function MovieList({type}) => {
     getMovieListData();
     // getData();
   }, []);
-}
+
   return (
     <div className="flex justify-around min-w-[1440px] items-center">
       <div className="">
