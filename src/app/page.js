@@ -4,7 +4,7 @@ import Header from "@/_features/Header";
 import Footer from "@/_features/Footer";
 import HeroSection from "@/_features/home/HeroSection";
 import { useState, useEffect } from "react";
-import MovieList from "@/_features/home/MovieList";
+import {MovieList} from "@/_features/home/MovieList";
 
 export default function Home() {
   return (

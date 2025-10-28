@@ -4,8 +4,8 @@ import { PhoneIcon } from "@/_icons/PhoneIcon";
 
 export default function Footer() {
   return (
-    <div className="flex h-[280px] w-[1440px] bg-indigo-700 mt-[52px] justify-center items-center">
-      <div className="w-[1280px] h-[200px] flex justify-between">
+    <div className="flex h-[280px] w-full bg-indigo-700 mt-[52px] justify-center items-center">
+      <div className="w-[1440px] h-[200px] flex justify-between">
         <div className="flex flex-col h-[59px] gap-[12px]">
           <FilmIconWhite className="text-white" />
           <p className="text-white inter font-sm">
