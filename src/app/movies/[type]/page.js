@@ -14,6 +14,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import Header from "@/_features/Header";
+import Footer from "@/_features/Footer";
 
 const BASE_URL = "https://api.themoviedb.org/3";
 const ACCESS_TOKEN =
@@ -40,7 +42,7 @@ export default function MoviesType() {
           "Content-Type": "application/json",
         },
       });
-
+      
       const data = await response.json();
       setMovieListData(data.results || []);
       setTotalPages(data.total_pages || 1);
@@ -50,31 +52,32 @@ export default function MoviesType() {
       setLoading(false);
     }
   };
-
+  
   useEffect(() => {
     getMovieListData();
   }, [param?.type, page]);
-
+  
   // ✅ Handle pagination
   const handlePreviousPage = () => {
     if (page > 1) setPage((p) => p - 1);
   };
-
+  
   const handleNextPage = () => {
     if (page < totalPages) setPage((p) => p + 1);
   };
-
+  
   return (
-    <div className="w-full min-h-screen flex flex-col items-center py-10">
-      <h1 className="text-3xl font-semibold mb-6 capitalize">
-        {param.type} Movies
-      </h1>
+    <div className="w-full min-h-screen flex flex-col items-center">
+      <Header/>
+      <div className="text-3xl font-semibold capitalize flex justify-start items-start">
+        {param.type}
+      </div>
 
       {loading ? (
         <div>Loading...</div>
       ) : (
         <div className="grid grid-cols-5 gap-6">
-          {movieListData.map((movie, index) => (
+          {movieListData.slice(0, 10).map((movie, index) => (
             <MovieCard
               key={index}
               title={movie.title}
@@ -89,40 +92,70 @@ export default function MoviesType() {
         </div>
       )}
 
-      {/* ✅ Pagination Component */}
-      <Pagination className="mt-10">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                handlePreviousPage();
-              }}
-            />
-          </PaginationItem>
+    <Pagination className="flex justify-end items-end w-[1440px]">
+  <PaginationContent >
 
-          <PaginationItem>
-            <PaginationLink href="#" isActive>
-              {page}
-            </PaginationLink>
-          </PaginationItem>
+    <PaginationItem >
+      <PaginationPrevious
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          handlePreviousPage();
+        }}
+      >
+        Previous
+      </PaginationPrevious>
+    </PaginationItem>
 
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
+   
+    {[1, 2].slice(0,10).map((num) => (
+      <PaginationItem key={num}>
+        <PaginationLink
+          href="#"
+          isActive={page === num}
+          onClick={(e) => {
+            e.preventDefault();
+            setPage(num);
+          }}
+        >
+          {num}
+        </PaginationLink>
+      </PaginationItem>
+    ))}
 
-          <PaginationItem>
-            <PaginationNext
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNextPage();
-              }}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+
+    <PaginationItem>
+      <PaginationLink
+        href="#"
+        isActive={page === 5}
+        onClick={(e) => {
+          e.preventDefault();
+          setPage(5);
+        }}
+      >
+        5
+      </PaginationLink>
+    </PaginationItem>
+
+    <PaginationItem>
+      <PaginationNext
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          handleNextPage();
+        }}
+      >
+        Next
+      </PaginationNext>
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>
+
+      <Footer/>
     </div>
   );
 }

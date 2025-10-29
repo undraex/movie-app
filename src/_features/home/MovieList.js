@@ -38,7 +38,7 @@ const handleSeeMoreButton = () =>{
 };
 
   return (
-    <div className="flex justify-around min-w-[1440px] items-center">
+    <div className="flex justify-around w-[1440px] items-center">
       <div >
         <div className="flex justify-between ">
           <div className=" text-2xl font-semibold justify-between">{type}</div>
@@ -47,7 +47,7 @@ const handleSeeMoreButton = () =>{
             <ArrowRight />
           </button>
         </div>
-        <div className="grid grid-cols-5 gap-[32px]">
+        <div className="grid grid-cols-5 gap-[32px] w-[1440px]">
           {movieListData.slice(0, 10).map((movie, index) => {
             return (
               <MovieCard

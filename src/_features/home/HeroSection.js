@@ -143,8 +143,8 @@ import {
 export default function HeroSection() {
   return (
     <div>
-      {/* Hero Background Section */}
-      {/* <div
+      
+      <div
         className="h-[600px] bg-cover bg-center bg-no-repeat flex items-center"
         style={{ backgroundImage: "url('/HeroSectionPic1.jpg')" }}
       >
@@ -169,11 +169,11 @@ export default function HeroSection() {
             Watch trailer
           </button>
         </div>
-      </div> */}
+      </div>
 
-      {/* Carousel Section */}
-      <div className="flex justify-center py-10">
-        <Carousel className="w-full max-w-xs">
+
+      <div className="flex justify-center">
+        <Carousel className="w-[1440px] ">
           <CarouselContent>
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem key={index}>

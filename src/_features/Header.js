@@ -4,7 +4,7 @@ import { SearchIcon } from "@/_icons/SearchIcon";
 import { ModeIcon } from "@/_icons/ModeIcon";
 export default function Header() {
   return (
-    <div className="flex min-w-[1440px] justify-around items-center">
+    <div className="flex w-[1440px] justify-between items-center">
       <div className="flex h-[59px] items-center">
         <FilmIcon />
       </div>
