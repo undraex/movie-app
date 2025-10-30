@@ -1,5 +1,5 @@
-export default function LoadingHeroCard{
+export default function LoadingHeroCard (){
     return(
-<div className="w-[1440px] h-[600px] bg-muted"></div>
+<div className="w-[1440px] h-[600px] bg-[#F4F4F5]"></div>
     )
 }

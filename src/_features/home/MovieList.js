@@ -4,6 +4,7 @@ import MovieCard from "@/_components/MovieCard";
 import { ArrowRight } from "@/_icons/ArrowRight";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import LoadingHeroList from "./_loading/LoadingHeroList";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const ACCESS_TOKEN =
@@ -33,21 +34,25 @@ const {type}= props;
     getMovieListData();
   }, []);
 
+  if(loading){
+    return <div><LoadingHeroList/></div>
+  }
+
 const handleSeeMoreButton = () =>{
   router.push(`/movies/${type}`)
 };
 
   return (
-    <div className="flex justify-around w-[1440px] items-center">
+    <div className="flex justify-around w-full items-center">
       <div >
-        <div className="flex justify-between ">
-          <div className=" text-2xl font-semibold justify-between">{type}</div>
-          <button className="h-[36px] w-[120px] flex items-center justify-center gap-[8px]" onClick={handleSeeMoreButton}>
+        <div className="flex justify-between  mt-[52px]">
+          <div className=" text-2xl font-semibold justify-between capitalize">{type}</div>
+          <button className="h-[36px] w-[120px] flex items-center justify-center gap-[8px] " onClick={handleSeeMoreButton}>
             See more
             <ArrowRight />
           </button>
         </div>
-        <div className="grid grid-cols-5 gap-[32px] w-[1440px]">
+        <div className="grid grid-cols-5 gap-[32px] w-[1440px] mt-[32px]">
           {movieListData.slice(0, 10).map((movie, index) => {
             return (
               <MovieCard

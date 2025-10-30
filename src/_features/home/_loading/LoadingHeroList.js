@@ -1,7 +1,9 @@
-import Header from "@/_features/Header";
+"use client"
+import LoadingHeroCard from "./LoadingHeroCard";
 
 export default function LoadingHeroList(){
     return(
-        <Header/>
+        <LoadingHeroCard/>
+        
     )
 }
