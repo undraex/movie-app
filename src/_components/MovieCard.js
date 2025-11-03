@@ -11,10 +11,10 @@ export default function MovieCard({ rating, title, imageUrl }) {
           className="w-[230px] h-[340px] bg-cover bg-center rounded-t-lg"
           style={{ backgroundImage: `url(${imageUrl})` }}
         ></div>
-        <div className="flex items-center">
+        <div className="flex items-center gap-[4px]">
           <StarIconSmall />
           <p className="text-black text-sm font-medium"></p>
-          {rating}
+       {Math.round(rating)}
           <p className="text-xs text-[#71717A]">/10</p>
         </div>
         <div className=" flex text-lg">{title}</div>

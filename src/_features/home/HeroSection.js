@@ -3,7 +3,6 @@
 import { PlayIcon } from "@/_icons/PlayIcon";
 import { StarIcon } from "@/_icons/StarIcon";
 
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -17,11 +16,11 @@ export default function HeroSection() {
     <div className="relative h-[600px] bg-cover bg-center bg-no-repeat flex items-center justify-center"
       style={{ backgroundImage: "url('/HeroSectionPic1.jpg')" }}
     >
-      {/* Overlay for better text contrast */}
+
       <div className="absolute inset-0 bg-black/40" />
 
-      {/* Carousel container */}
-      <div className="relative w-full max-w-[1440px]">
+
+      <div className="relative max-w-[1440px]">
         <Carousel className="w-full">
           <CarouselContent>
             {[
@@ -62,8 +61,7 @@ export default function HeroSection() {
 
                     <div className="flex items-center mb-3">
                       <StarIcon />
-                      <div className="text-white text-lg font-inter ml-1">
-                        {movie.rating}
+                      <div className="text-white text-lg font-inter ml-1">{movie.rating}
                       </div>
                       <div className="text-base font-inter text-[#71717A] ml-1">
                         /10

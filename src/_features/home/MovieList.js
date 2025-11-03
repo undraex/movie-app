@@ -15,6 +15,12 @@ const {type}= props;
   const router = useRouter();
   const [movieListData, setMovieListData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const categoryNames={
+    upcoming: "Upcoming",
+    popular:"Popular",
+    top_rated: "Top Rated"
+
+  }
 
   const getMovieListData = async () => {
     setLoading(true);
@@ -43,28 +49,30 @@ const handleSeeMoreButton = () =>{
 };
 
   return (
-    <div className="flex justify-around w-full items-center">
-      <div >
-        <div className="flex justify-between  mt-[52px]">
-          <div className=" text-2xl font-semibold justify-between capitalize">{type}</div>
-          <button className="h-[36px] w-[120px] flex items-center justify-center gap-[8px] " onClick={handleSeeMoreButton}>
-            See more
-            <ArrowRight />
-          </button>
-        </div>
-        <div className="grid grid-cols-5 gap-[32px] w-[1440px] mt-[32px]">
-          {movieListData.slice(0, 10).map((movie, index) => {
-            return (
-              <MovieCard
-                key={index}
-                title={movie.title}
-                imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                rating={movie.vote_average}
-              />
-            );
-          })}
-        </div>
+  <div className="flex justify-around w-full items-center">
+    <div>
+      <div className="flex justify-between items-center mt-[52px]">
+        <p className="text-[34px]">{categoryNames[type]}</p>
+        <button
+          className="h-[36px] w-[120px] flex items-center justify-center gap-[8px] cursor-pointer text-lg"
+          onClick={handleSeeMoreButton}
+        >
+          See more
+          <ArrowRight />
+        </button>
+      </div>
+      <div className="grid grid-cols-5 gap-[72px] w-[1440px] mt-[32px] cursor-pointer">
+        {movieListData.slice(0, 10).map((movie, index) => (
+          <MovieCard
+            key={index}
+            title={movie.title}
+            imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            rating={movie.vote_average}
+          />
+        ))}
       </div>
     </div>
-  );
+  </div>
+);
+
 }
