@@ -1,7 +1,6 @@
-
-
 import { PlayIcon } from "@/_icons/PlayIcon";
 import { StarIcon } from "@/_icons/StarIcon";
+import { useState, useEffect } from "react";
 
 import {
   Carousel,
@@ -10,15 +9,48 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import LoadingHeroList from "./_loading/LoadingHeroList";
+const BASE_URL = "https://api.themoviedb.org/3";
+
+const ACCESS_TOKEN =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjI5ZmNiMGRmZTNkMzc2MWFmOWM0YjFjYmEyZTg1NiIsIm5iZiI6MTc1OTcxMTIyNy43OTAwMDAyLCJzdWIiOiI2OGUzMGZmYjFlN2Y3MjAxYjI5Y2FiYmIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.M0DQ3rCdsWnMw8U-8g5yGXx-Ga00Jp3p11eRyiSxCuY";
 
 export default function HeroSection() {
+  const [movieListData, setMovieListData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const getMovieListData = async () => {
+    setLoading(true);
+    const movieListEndpoint = `${BASE_URL}/movie/now_playing?language=en-US&page=1`;
+    const response = await fetch(movieListEndpoint, {
+      headers: {
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    setMovieListData(data.results);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
+
+  useEffect(() => {
+    getMovieListData();
+  }, []);
+
+  if (loading ) {
+    return <LoadingHeroList />;
+  }
+  console.log("loadingdffff", loading);
   return (
-    <div className="relative h-[600px] bg-cover bg-center bg-no-repeat flex items-center justify-center"
+    <div
+      className="relative h-[600px] bg-cover bg-center bg-no-repeat flex items-center justify-center"
       style={{ backgroundImage: "url('/HeroSectionPic1.jpg')" }}
     >
-
       <div className="absolute inset-0 bg-black/40" />
-
 
       <div className="relative max-w-[1440px]">
         <Carousel className="w-full">
@@ -61,7 +93,8 @@ export default function HeroSection() {
 
                     <div className="flex items-center mb-3">
                       <StarIcon />
-                      <div className="text-white text-lg font-inter ml-1">{movie.rating}
+                      <div className="text-white text-lg font-inter ml-1">
+                        {movie.rating}
                       </div>
                       <div className="text-base font-inter text-[#71717A] ml-1">
                         /10
@@ -88,5 +121,3 @@ export default function HeroSection() {
     </div>
   );
 }
-
-
