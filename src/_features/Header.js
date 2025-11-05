@@ -1,7 +1,7 @@
 import { FilmIcon } from "@/_icons/FilmIcon";
-import { DownArrow } from "@/_icons/DownArrow";
 import { SearchIcon } from "@/_icons/SearchIcon";
 import { ModeIcon } from "@/_icons/ModeIcon";
+import { HeaderGenre } from "./home/HeaderGenre";
 export default function Header() {
   return (
     <div className="flex w-[1440px] justify-between items-center">
@@ -9,10 +9,7 @@ export default function Header() {
         <FilmIcon />
       </div>
       <div className="flex gap-[12px] ">
-        <button className="flex h-[36px] w-[97px] items-center justify-center border rounded-lg gap-[8px]">
-          <DownArrow />
-          Genre
-        </button>
+        <HeaderGenre />
         <div className="relative w-[379px] h-[36px]">
           <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
             <SearchIcon className="w-4 h-4" />
