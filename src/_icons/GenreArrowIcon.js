@@ -1,5 +1,5 @@
 import * as React from "react"
-const GenreArrowIcon = (props) => (
+export const GenreArrowIcon = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={16}
@@ -15,4 +15,4 @@ const GenreArrowIcon = (props) => (
     />
   </svg>
 )
-export default SvgComponent
+

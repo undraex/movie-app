@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { DownArrow } from "@/_icons/DownArrow";
-import { AlertCircleIcon, BadgeCheckIcon, CheckIcon } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-
+import { GenreArrowIcon } from "@/_icons/GenreArrowIcon";
+import { LineIcon } from "@/_icons/LineIcon";
 
 const BASE_URL = "https://api.themoviedb.org/3";
 
@@ -35,7 +35,7 @@ export const HeaderGenre = (props) => {
     });
     const data = await response.json();
 
-    setMovieListData(data.results);
+    setMovieListData(data.genres);
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -56,23 +56,26 @@ export const HeaderGenre = (props) => {
           </Button>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent className="w-56 items-start w-[577px] h-[333px] pd-[20px]" >
+        <DropdownMenuContent className="w-56 items-start w-[600px] h-[280px] p-[20px]" >
          <div className="flex flex-col gap-[4px]">
             <p className="font-[24px] font-semibold inter"> Genres</p>
-            <p className="font-base inter">See lists of movies by genre</p>
+            <p className="text-base inter">See lists of movies by genre</p>
          </div>
-
+         <LineIcon/>
          <div>
          <div>
-          <div className="flex w-full flex-wrap gap-2 grid grid-cols-5">
-            {data?.map((movie)=>(
-           <Badge 
-           key={movie.id} className="bg-white text-black border border-gray-300">
-            {movie.name}
-            <GenreArrowIcon/>
-           </Badge>
-            ))}
-           </div>
+        <div className="grid grid-cols-5 flex gap-[16px]">
+              {movieListData.map((genre) => (
+                <Badge
+                  key={genre.id}
+                  className="bg-white text-black border border-gray-300 hover:bg-gray-100 cursor-pointer flex items-center justify-between font-semibold"
+                  onClick={() => router.push(`/genre/${genre.id}`)}
+                >
+                  {genre.name}
+                  <GenreArrowIcon/>
+                </Badge>
+              ))}
+            </div>
           </div>
          </div>
         </DropdownMenuContent>
@@ -80,3 +83,5 @@ export const HeaderGenre = (props) => {
     </div>
   );
 };
+
+
