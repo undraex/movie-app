@@ -2,11 +2,16 @@ import { FilmIcon } from "@/_icons/FilmIcon";
 import { SearchIcon } from "@/_icons/SearchIcon";
 import { ModeIcon } from "@/_icons/ModeIcon";
 import { HeaderGenre } from "./home/HeaderGenre";
+import { useRouter } from "next/navigation";
 export default function Header() {
+  const router = useRouter();
+  const handleNavigateHome =()=>{
+    router.push("/")
+  }
   return (
     <div className="flex w-[1440px] justify-between items-center">
-      <div className="flex h-[59px] items-center">
-        <FilmIcon />
+      <div className="flex h-[59px] items-center cursor-pointer" onClick={handleNavigateHome}>
+        <FilmIcon/>
       </div>
       <div className="flex gap-[12px] ">
         <HeaderGenre />

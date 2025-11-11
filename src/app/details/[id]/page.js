@@ -75,9 +75,10 @@ const MovieDetailsCard = ({ rating, className }) => {
   if (loading) {
     return <LoadingMovieList />;
   }
- const handleSeeMoreButton = () => {
+  const handleSeeMoreButton = () => {
   router.push(`/similar/${id}`);
 };
+
  
   const directors = directorData?.crew?.filter(
     (data) => data.job === "Director"
