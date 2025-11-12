@@ -63,7 +63,7 @@ export const MovieList = ({ type }) => {
           </button>
         </div>
 
-        <div className="grid grid-cols-5 gap-[72px] w-[1440px] mt-[32px]">
+        <div className="grid grid-cols-5 gap-[32px]  mt-[32px]">
           {movieListData.slice(0, 10).map((movie) => (
             <MovieCard
               key={movie.id}
@@ -72,6 +72,7 @@ export const MovieList = ({ type }) => {
               imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               rating={movie.vote_average}
               onClick={() => handleCardClick(movie.id)} 
+               variant="details"
             />
           ))}
         </div>

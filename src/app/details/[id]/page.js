@@ -13,11 +13,10 @@ import { ArrowRight } from "@/_icons/ArrowRight";
 const BASE_URL = "https://api.themoviedb.org/3";
 const ACCESS_TOKEN =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjI5ZmNiMGRmZTNkMzc2MWFmOWM0YjFjYmEyZTg1NiIsIm5iZiI6MTc1OTcxMTIyNy43OTAwMDAyLCJzdWIiOiI2OGUzMGZmYjFlN2Y3MjAxYjI5Y2FiYmIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.M0DQ3rCdsWnMw8U-8g5yGXx-Ga00Jp3p11eRyiSxCuY";
- 
+  
 const MovieDetailsCard = ({ rating, className }) => {
   const [movieData, setMoviedata] = useState([]);
   const [movieDetail, setMovieDetail] = useState([]);
-  const [similarMovies, setSimilarMovies] = useState([]);
   const [directorData, setDirectorData] = useState([]);
  
   const [trailer, setTrailer] = useState(null);
@@ -194,11 +193,13 @@ const MovieDetailsCard = ({ rating, className }) => {
             {movieData.slice(0, 5).map((movie) => (
               <MovieCard
                 minimumWidth="190px"
+                minimumHeigth="372px"
                 key={movie.id}
                 id={movie.id}
                 title={movie.title}
                 imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 rating={movie.vote_average}
+                 variant="details"
               />
             ))}
           </div>

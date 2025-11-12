@@ -147,7 +147,7 @@ const ACCESS_TOKEN = "YOUR_ACCESS_TOKEN";
 
 export default function SimilarMoviesPage() {
   const { id } = useParams();
-  console.log("ID from params:", id);  // 🟢 энд бичнэ
+  console.log(" ID from params:", id);  
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -193,7 +193,7 @@ export default function SimilarMoviesPage() {
       {loading ? (
         <div className="mt-[40px] text-lg font-medium">Loading...</div>
       ) : (
-        <div className="grid grid-cols-5 gap-[72px] w-[1440px] mt-[32px]">
+        <div className="grid grid-cols-5 gap-[32px] mt-[32px]">
           {movies.slice(0, 10).map((movie) => (
             <MovieCard
               key={movie.id}
@@ -212,7 +212,7 @@ export default function SimilarMoviesPage() {
         </div>
       )}
 
-      <div className="w-[1440px] flex justify-end mt-[32px]">
+      <div className="w-[1440px] flex justify-end items-end mt-[32px]">
         <Pagination>
           <PaginationContent>
             <PaginationItem>
